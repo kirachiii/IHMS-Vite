@@ -55,7 +55,7 @@ export default {
     methods: {
         async fetchCustomerServiceReports() {
             try {
-                const response = await axios.get('https://backstage.ihms.club:8080/api/CustomService');  // Update API path
+                const response = await axios.get('https://localhost:7127/api/CustomService');  // Update API path
                 console.log('Response data:', response.data);
                 this.reports = response.data;
             } catch (error) {

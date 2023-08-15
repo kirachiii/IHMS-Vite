@@ -125,7 +125,7 @@ export default {
   methods: {
     async fetchAnnouncements() {
       try {
-        const response = await axios.get('https://backstage.ihms.club:8080/api/announcements');
+        const response = await axios.get('https://localhost:7127/api/announcements');
         console.log(response.data); // 使用 console.log 確認回應資料
         this.announcements = response.data;
       } catch (error) {

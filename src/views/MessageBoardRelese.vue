@@ -55,7 +55,7 @@ export default {
     created() {
 
         const currentMember = JSON.parse(localStorage.getItem('currentMember'));
-        console.log(currentMember); 
+        console.log(currentMember);
         if (currentMember && currentMember.memberId) {
             this.message.member_id = currentMember.memberId;
         } else {
@@ -74,7 +74,7 @@ export default {
             for (let image of selectedImages) {
                 if (!validImageTypes.includes(image.type)) {
                     alert('檔案格式必須為 GIF, JPEG, or PNG');
-                    this.$refs.images.value = null;  
+                    this.$refs.images.value = null;
                     return;
                 }
             }
@@ -94,7 +94,21 @@ export default {
                     formData.append('images', image);
                 });
 
-                await axios.post('https://backstage.ihms.club:8080/api/MessageBoard/CreateMessage', formData, {
+                // 將 formData 轉為 JSON 並打印到控制台
+                let jsonObject = {};
+                formData.forEach((value, key) => {
+                    // 對於 images 進行特別處理
+                    if (key === 'images') {
+                        if (!jsonObject[key]) jsonObject[key] = [];
+                        jsonObject[key].push(value.name); // 只取文件名，因為實際的圖片內容無法直接轉為JSON
+                    } else {
+                        jsonObject[key] = value;
+                    }
+                });
+
+                console.log(JSON.stringify(jsonObject, null, 2)); // 這裡會打印你的 JSON
+
+                await axios.post('https://localhost:7127/api/MessageBoard/CreateMessage', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

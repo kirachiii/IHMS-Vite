@@ -38,7 +38,7 @@
                                 </div>
 
                                 <div>
-                                    <p class="mb-0">還沒有帳號嗎? <a clichref="https://localhost:7127/Members/SignIn"
+                                    <p class="mb-0">還沒有帳號嗎? <a href="https://localhost:7127/Members/SignIn"
                                             class="text-white-50 fw-bold">註冊</a></p>
                                 </div>
                             </div>

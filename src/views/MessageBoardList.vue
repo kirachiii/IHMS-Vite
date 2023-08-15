@@ -129,7 +129,7 @@ export default {
     created() {
         // 使用 axios 發送 GET 請求取得留言板資料
         axios
-            .get('https://backstage.ihms.club:8080/api/MessageBoard')
+            .get('https://localhost:7127/api/MessageBoard')
             .then((response) => {
                 this.messages = response.data;
             })

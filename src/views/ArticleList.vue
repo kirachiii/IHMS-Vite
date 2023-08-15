@@ -6,7 +6,7 @@
                 <div class="col-lg-6" v-for="article in articles" :key="article.article_id">
                     <div class="card mb-4">
                         <div class="image-wrapper">
-                            <img :src="'https://backstage.ihms.club:8080' + article.image" class="card-img-top preview-image" alt="Article image">
+                            <img :src="'https://localhost:7127' + article.image" class="card-img-top preview-image" alt="Article image">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ article.title }}</h5>
@@ -31,7 +31,7 @@ export default {
     },
     async mounted() {
     try {
-        const response = await axios.get('https://backstage.ihms.club:8080/api/article');
+        const response = await axios.get('https://localhost:7127/api/article');
         this.articles = response.data;
         
         // 對 articles 進行排序，最新的在前面

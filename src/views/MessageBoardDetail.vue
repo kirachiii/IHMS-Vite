@@ -69,9 +69,9 @@ export default {
             });
         },
         getImageUrl(imageName) {
-            console.log(`https://backstage.ihms.club:8080/api/Image/${this.message.message_id}/images/${imageName}`);
+            console.log(`https://localhost:7127/api/Image/${this.message.message_id}/images/${imageName}`);
             if (imageName) {
-                return `https://backstage.ihms.club:8080/api/Image/${this.message.message_id}/images/${imageName}`;
+                return `https://localhost:7127/api/Image/${this.message.message_id}/images/${imageName}`;
             } else {
                 return '';
             }
@@ -91,7 +91,7 @@ export default {
 
                 console.log('Submitting comment:', commentData);
 
-                await axios.post(`https://backstage.ihms.club:8080/api/MessageBoardDetails`, commentData, {
+                await axios.post(`https://localhost:7127/api/MessageBoardDetails`, commentData, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -105,7 +105,7 @@ export default {
         },
         async fetchComments() {
             try {
-                const response = await axios.get(`https://backstage.ihms.club:8080/api/MessageBoardDetails/${this.message.message_id}`);
+                const response = await axios.get(`https://localhost:7127/api/MessageBoardDetails/${this.message.message_id}`);
                 console.log("Fetch Comments Response: ", response);
                 this.comments = response.data;
             } catch (error) {
@@ -133,7 +133,7 @@ export default {
 
                 console.log('PUT JSON:', JSON.stringify(messageData, null, 2));
 
-                await axios.put(`https://backstage.ihms.club:8080/api/MessageBoardDetails/${this.message.message_id}`, messageData, {
+                await axios.put(`https://localhost:7127/api/MessageBoardDetails/${this.message.message_id}`, messageData, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -147,7 +147,7 @@ export default {
         async fetchMessage() {
             try {
                 let messageId = this.$route.params.messageId;
-                let response = await axios.get(`https://backstage.ihms.club:8080/api/MessageBoard/${messageId}`);
+                let response = await axios.get(`https://localhost:7127/api/MessageBoard/${messageId}`);
                 this.message = response.data;
             } catch (error) {
                 console.error('獲取留言失敗：', error);
@@ -164,13 +164,13 @@ export default {
         }
 
         try {
-            let response = await axios.get(`https://backstage.ihms.club:8080/api/MessageBoard/${messageId}`);
+            let response = await axios.get(`https://localhost:7127/api/MessageBoard/${messageId}`);
             console.log("Message response received: ", response);
             this.message = response.data;
 
             if (this.message.message_id) {
                 console.log("Getting images for message with ID: ", this.message.message_id);
-                let imageResponse = await axios.get(`https://backstage.ihms.club:8080/api/Image/${this.message.message_id}/images`);
+                let imageResponse = await axios.get(`https://localhost:7127/api/Image/${this.message.message_id}/images`);
                 console.log("Image response received: ", imageResponse);
                 this.images = imageResponse.data;
                 console.log("Images: ", this.images);
